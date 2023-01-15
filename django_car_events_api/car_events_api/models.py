@@ -30,6 +30,9 @@ class CarPlan(models.Model):
 
 
 class CarSpecs(models.Model):
+    car_plan = models.ForeignKey(
+        CarPlan, on_delete=models.SET_NULL, null=True
+    )
     production_year = models.IntegerField()
     car_make = models.CharField(max_length=60)
     car_model = models.CharField(max_length=100)
