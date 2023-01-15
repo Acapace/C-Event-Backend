@@ -30,8 +30,8 @@ class CarPlan(models.Model):
 
 
 class CarSpecs(models.Model):
-    production_year = models.CharField(max_length=20)
-    car_brand = models.CharField(max_length=60)
+    production_year = models.IntegerField()
+    car_make = models.CharField(max_length=60)
     car_model = models.CharField(max_length=100)
     engine_type = models.CharField(max_length=50)
     image_link = models.CharField(max_length=255, blank=True)
