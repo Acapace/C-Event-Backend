@@ -28,5 +28,7 @@ class CarPlanSerializer(serializers.ModelSerializer):
 class CarSpecsSerializer(serializers.ModelSerializer):
     class Meta:
         model = CarSpecs
-        fields = ('id', 'production_year', 'car_make',
+        fields = ('id', 'car_plan', 'production_year', 'car_make',
                   'car_model', 'engine_type', 'image_link')
+
+        depth = 1
