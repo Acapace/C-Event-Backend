@@ -4,15 +4,9 @@ from drf_multiple_model.views import ObjectMultipleModelAPIView
 # Create your views here.
 
 from rest_framework import generics
-from .serializers import BlogSerializer
-from .serializers import InventorySerializer
-from .serializers import CarPlanSerializer
-from .serializers import CarSpecsSerializer
+from .serializers import BlogSerializer, VendorSerializer, CategorySerializer, ProductSerializer, OptionSerializer, CarSerializer
 
-from .models import Blog
-from .models import CarSpecs
-from .models import CarPlan
-from .models import Inventory
+from .models import Blog, Vendor, Category, Option, Product, Car
 
 # / blog POST, GET
 
@@ -29,31 +23,51 @@ class BlogDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BlogSerializer
 
 
-class InventoryList(generics.ListCreateAPIView):
-    queryset = Inventory.objects.all().order_by('id')
-    serializer_class = InventorySerializer
+class VendorList(generics.ListCreateAPIView):
+    queryset = Vendor.objects.all().order_by('id')
+    serializer_class = VendorSerializer
 
 
-class InventoryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Inventory.objects.all().order_by('id')
-    serializer_class = InventorySerializer
+class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Vendor.objects.all().order_by('id')
+    serializer_class = VendorSerializer
 
 
-class CarPlanList(generics.ListCreateAPIView):
-    queryset = CarPlan.objects.all().order_by('id')
-    serializer_class = CarPlanSerializer
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all().order_by('id')
+    serializer_class = CategorySerializer
 
 
-class CarPlanDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CarPlan.objects.all().order_by('id')
-    serializer_class = CarPlanSerializer
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all().order_by('id')
+    serializer_class = CategorySerializer
 
 
-class CarSpecsList(generics.ListCreateAPIView):
-    queryset = CarSpecs.objects.all().order_by('id')
-    serializer_class = CarSpecsSerializer
+class ProductList(generics.ListCreateAPIView):
+    queryset = Product.objects.all().order_by('id')
+    serializer_class = ProductSerializer
 
 
-class CarSpecsDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CarSpecs.objects.all().order_by('id')
-    serializer_class = CarSpecsSerializer
+class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all().order_by('id')
+    serializer_class = ProductSerializer
+
+
+class OptionList(generics.ListCreateAPIView):
+    queryset = Option.objects.all().order_by('id')
+    serializer_class = OptionSerializer
+
+
+class OptionDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Option.objects.all().order_by('id')
+    serializer_class = OptionSerializer
+
+
+class CarList(generics.ListCreateAPIView):
+    queryset = Car.objects.all().order_by('id')
+    serializer_class = CarSerializer
+
+
+class CarDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Car.objects.all().order_by('id')
+    serializer_class = CarSerializer

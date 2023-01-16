@@ -6,38 +6,56 @@ from django.db import models
 
 class Blog(models.Model):
     date = models.CharField(max_length=20)
-    event_name = models.CharField(max_length=32)
-    event_location = models.CharField(max_length=60)
+    name = models.CharField(max_length=32)
+    location = models.CharField(max_length=60)
     topic = models.CharField(max_length=60)
-    post = models.TextField(max_length=2000)
+    text = models.TextField(max_length=2000)
 
 
-class Inventory(models.Model):
-    vendor_name = models.CharField(max_length=60)
-    item_name = models.CharField(max_length=60)
-    item_description = models.CharField(max_length=200)
-    item_price = models.CharField(max_length=20)
+class Vendor(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+    description = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
+    vendor = models.ForeignKey(
+        Vendor, on_delete=models.SET_NULL, null=True
+    )
+    category = models.ManyToManyField(
+        Category
+    )
+    name = models.CharField(max_length=60)
+    description = models.CharField(max_length=200)
+    price = models.CharField(max_length=20)
     image_link = models.CharField(max_length=255, blank=True)
 
 
-class CarPlan(models.Model):
-    plan_name = models.CharField(max_length=20)
-    year_of_warranty = models.PositiveBigIntegerField(default=1)
-    finance_plan = models.CharField(max_length=20, default="unavailable")
+class Option(models.Model):
+    name = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.plan_name
+        return self.name
 
 
-class CarSpecs(models.Model):
-    car_plan = models.ForeignKey(
-        CarPlan, on_delete=models.SET_NULL, null=True
+class Car(models.Model):
+    option = models.ForeignKey(
+        Option, on_delete=models.SET_NULL, null=True
     )
-    production_year = models.IntegerField()
-    car_make = models.CharField(max_length=60)
-    car_model = models.CharField(max_length=100)
+    year = models.IntegerField()
+    make = models.CharField(max_length=60)
+    model = models.CharField(max_length=100)
     engine_type = models.CharField(max_length=50)
     image_link = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
-        return self.car_model
+        return self.model

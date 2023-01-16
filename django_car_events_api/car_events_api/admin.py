@@ -1,16 +1,17 @@
 from django.contrib import admin
-from .models import Blog
-from .models import CarSpecs
-from .models import CarPlan
-from .models import Inventory
+from .models import Blog, Vendor, Category, Option, Product, Car
 
 
 # Register your models here.
 
 admin.site.register(Blog)
 
-admin.site.register(Inventory)
+admin.site.register(Vendor)
 
-admin.site.register(CarPlan)
+admin.site.register(Category)
 
-admin.site.register(CarSpecs)
+admin.site.register(Product)
+
+admin.site.register(Option)
+
+admin.site.register(Car)

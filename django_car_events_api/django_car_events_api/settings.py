@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'django_car_events_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'car_events_api',
+        'NAME': 'carevents_api',
         'USER': '',
         'PASSWORD': '',
         'HOST': 'localhost'

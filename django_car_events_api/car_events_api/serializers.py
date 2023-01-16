@@ -1,34 +1,46 @@
 from rest_framework import serializers
-from .models import Blog
-from .models import CarSpecs
-from .models import CarPlan
-from .models import Inventory
+from .models import Blog, Option, Category, Product, Car, Vendor
 
 
 class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
-        fields = ('id', 'date', 'event_name',
-                  'event_location', 'topic', 'post')
+        fields = ('id', 'date', 'name',
+                  'location', 'topic', 'text')
 
 
-class InventorySerializer(serializers.ModelSerializer):
+class VendorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Inventory
-        fields = ('id', 'vendor_name', 'item_name',
-                  'item_description', 'item_price', 'image_link')
+        model = Vendor
+        fields = ('id', 'name')
 
 
-class CarPlanSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
+
     class Meta:
-        model = CarPlan
-        fields = ('id', 'plan_name', 'year_of_warranty', 'finance_plan')
+        model = Category
+        fields = ('id', 'name', 'description')
 
 
-class CarSpecsSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CarSpecs
-        fields = ('id', 'car_plan', 'production_year', 'car_make',
-                  'car_model', 'engine_type', 'image_link')
+        model = Product
+        fields = ('id', 'vendor', 'category', 'name',
+                  'description', 'price', 'image_link')
+
+        depth = 1
+
+
+class OptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Option
+        fields = ('id', 'name')
+
+
+class CarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Car
+        fields = ('id', 'option', 'year', 'make',
+                  'model', 'engine_type', 'image_link')
 
         depth = 1
